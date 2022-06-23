@@ -88,12 +88,23 @@ func (backend *ElasticsearchBackend) ReadFromES(query elastic.Query, index strin
 	return searchResult, nil
 }
 
-// save a post data to Eslasticsearch
+// save a post data to Elasticsearch
 func (backend *ElasticsearchBackend) SaveToES(i interface{}, index string, id string) error {
     _, err := backend.client.Index().
         Index(index).
         Id(id).
         BodyJson(i).
         Do(context.Background())
+    return err
+}
+
+// delete data from Elasticsearch
+func (backend *ElasticsearchBackend) DeleteFromES(query elastic.Query, index string) error {
+    _, err := backend.client.DeleteByQuery().
+        Index(index).
+        Query(query).
+        Pretty(true).
+        Do(context.Background())
+
     return err
 }
