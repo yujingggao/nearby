@@ -188,5 +188,3 @@ Compared to storing media files in a database, storing them in a file system dir
 -   Objects are immutable, so you can’t make incremental changes, but only overwrite the whole object.
 
 Refer to [this doc](https://cloud.google.com/storage/docs/creating-buckets) to create your GCS bucket. 
-
-test
